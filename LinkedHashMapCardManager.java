@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class LinkedHashMapCardManager implements CardManager {
     @Override
@@ -19,32 +20,48 @@ public class LinkedHashMapCardManager implements CardManager {
 
     @Override
     public void addCard(Map<String, Integer> userCardMap, String cardName) {
-        // Implementación para agregar una carta al mapa del usuario
+        userCardMap.put(cardName, userCardMap.getOrDefault(cardName, 0) + 1);
     }
 
     @Override
     public String getCardType(Map<String, String> cardMap, String cardName) {
-        // Implementación para obtener el tipo de una carta específica
-        return null;
+        return cardMap.get(cardName);
     }
 
     @Override
     public void showUserCards(Map<String, Integer> userCardMap, Map<String, String> cardMap) {
-        // Implementación para mostrar las cartas del usuario
+        System.out.println("Cartas del usuario:");
+        for (Map.Entry<String, Integer> entry : userCardMap.entrySet()) {
+            System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + cardMap.get(entry.getKey()) + ", Cantidad: " + entry.getValue());
+        }
     }
 
     @Override
     public void showUserCardsSortedByType(Map<String, Integer> userCardMap, Map<String, String> cardMap) {
         // Implementación para mostrar las cartas del usuario ordenadas por tipo
+        TreeMap<String, Integer> sortedUserCards = new TreeMap<>();
+        for (Map.Entry<String, Integer> entry : userCardMap.entrySet()) {
+            sortedUserCards.put(entry.getKey(), entry.getValue());
+        }
+        for (Map.Entry<String, Integer> entry : sortedUserCards.entrySet()) {
+            System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + cardMap.get(entry.getKey()) + ", Cantidad: " + entry.getValue());
+        }
     }
 
     @Override
     public void showAllCards(Map<String, String> cardMap) {
-        // Implementación para mostrar todas las cartas disponibles
+        System.out.println("Todas las cartas disponibles:");
+        for (Map.Entry<String, String> entry : cardMap.entrySet()) {
+            System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+        }
     }
 
     @Override
     public void showAllCardsSortedByType(Map<String, String> cardMap) {
         // Implementación para mostrar todas las cartas disponibles ordenadas por tipo
+        TreeMap<String, String> sortedCards = new TreeMap<>(cardMap);
+        for (Map.Entry<String, String> entry : sortedCards.entrySet()) {
+            System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+        }
     }
 }
