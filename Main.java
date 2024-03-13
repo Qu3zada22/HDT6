@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         Map<String, String> cardMap = new HashMap<>();
         Map<String, Integer> userCardMap = new HashMap<>();
@@ -14,6 +14,7 @@ public class Main {
         System.out.println("1. HashMap");
         System.out.println("2. TreeMap");
         System.out.println("3. LinkedHashMap");
+        System.out.println("4. Ejecicion para profier");
         int choice = scanner.nextInt();
 
         switch (choice) {
@@ -25,6 +26,17 @@ public class Main {
                 break;
             case 3:
                 cardManager = new LinkedHashMapCardManager();
+                break;
+            case 4:
+                cardManager = new HashMapCardManager();
+                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.showAllCards(cardMap);
+                cardManager = new TreeMapCardManager();
+                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.showAllCards(cardMap);
+                cardManager = new LinkedHashMapCardManager();
+                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.showAllCards(cardMap);
                 break;
             default:
                 System.out.println("Opción no válida. Saliendo del programa...");
