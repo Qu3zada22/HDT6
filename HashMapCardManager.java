@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -51,8 +49,17 @@ public class HashMapCardManager implements CardManager {
     @Override
     public void showAllCards(Map<String, String> cardMap) {
         System.out.println("Todas las cartas disponibles:");
-        for (Map.Entry<String, String> entry : cardMap.entrySet()) {
-            System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("showAllCards_timeHASH.csv", true))) {
+            writer.write("Nombre,Tipo,Tiempo de ejecución (ms)\n"); // Encabezado fuera del bucle
+            for (Map.Entry<String, String> entry : cardMap.entrySet()) {
+                long startTime = System.nanoTime();
+                System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+                long endTime = System.nanoTime();
+                long duration = (endTime - startTime);
+                writer.write(startTime + "," + endTime + "," +  duration+ "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

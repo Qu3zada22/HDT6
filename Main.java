@@ -30,13 +30,29 @@ public class Main {
             case 4:
                 cardManager = new HashMapCardManager();
                 cardManager.loadCards(cardMap, "cartas.txt");
+                long startTime1 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
+                long endTime1 = System.nanoTime();
+                long duration1 = (endTime1 - startTime1); // Tiempo en nanosegundos
+
                 cardManager = new TreeMapCardManager();
                 cardManager.loadCards(cardMap, "cartas.txt");
+                long startTime2 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
+                long endTime2 = System.nanoTime();
+                long duration2 = (endTime2 - startTime2); // Tiempo en nanosegundos
+
                 cardManager = new LinkedHashMapCardManager();
                 cardManager.loadCards(cardMap, "cartas.txt");
+                long startTime3 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
+                long endTime3 = System.nanoTime();
+                long duration3 = (endTime3 - startTime3); // Tiempo en nanosegundos
+
+                System.out.println("Tiempo de ejecución total: " + duration1 + " milisegundos");
+                System.out.println("Tiempo de ejecución total: " + duration2 + " milisegundos");
+                System.out.println("Tiempo de ejecución total: " + duration3 + " milisegundos");
+                System.exit(0);
                 break;
             default:
                 System.out.println("Opción no válida. Saliendo del programa...");
