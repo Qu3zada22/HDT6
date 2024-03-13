@@ -1,12 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+package org.example;
+import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
-public class LinkedHashMapCardManager implements CardManager {
+public class HashMapCardManager implements CardManager {
     @Override
     public void loadCards(Map<String, String> cardMap, String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -40,7 +37,7 @@ public class LinkedHashMapCardManager implements CardManager {
 
     @Override
     public void showUserCardsSortedByType(Map<String, Integer> userCardMap, Map<String, String> cardMap) {
-        // Implementación para mostrar las cartas del usuario ordenadas por tipo
+        // A implementar
         TreeMap<String, Integer> sortedUserCards = new TreeMap<>();
         for (Map.Entry<String, Integer> entry : userCardMap.entrySet()) {
             sortedUserCards.put(entry.getKey(), entry.getValue());
@@ -53,7 +50,7 @@ public class LinkedHashMapCardManager implements CardManager {
     @Override
     public void showAllCards(Map<String, String> cardMap) {
         System.out.println("Todas las cartas disponibles:");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("showAllCards_time.csv", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("showAllCards_timeHASH.csv", true))) {
             writer.write("Nombre,Tipo,Tiempo de ejecución (ms)\n"); // Encabezado fuera del bucle
             for (Map.Entry<String, String> entry : cardMap.entrySet()) {
                 long startTime = System.nanoTime();
@@ -69,7 +66,7 @@ public class LinkedHashMapCardManager implements CardManager {
 
     @Override
     public void showAllCardsSortedByType(Map<String, String> cardMap) {
-        // Implementación para mostrar todas las cartas disponibles ordenadas por tipo
+        // A implementar
         TreeMap<String, String> sortedCards = new TreeMap<>(cardMap);
         for (Map.Entry<String, String> entry : sortedCards.entrySet()) {
             System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());

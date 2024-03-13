@@ -1,3 +1,5 @@
+package org.example;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,21 +31,21 @@ public class Main {
                 break;
             case 4:
                 cardManager = new HashMapCardManager();
-                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.loadCards(cardMap, "src/main/resources/cartas.txt");
                 long startTime1 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
                 long endTime1 = System.nanoTime();
                 long duration1 = (endTime1 - startTime1); // Tiempo en nanosegundos
 
                 cardManager = new TreeMapCardManager();
-                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.loadCards(cardMap, "src/main/resources/cartas.txt");
                 long startTime2 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
                 long endTime2 = System.nanoTime();
                 long duration2 = (endTime2 - startTime2); // Tiempo en nanosegundos
 
                 cardManager = new LinkedHashMapCardManager();
-                cardManager.loadCards(cardMap, "cartas.txt");
+                cardManager.loadCards(cardMap, "src/main/resources/cartas.txt");
                 long startTime3 = System.nanoTime();
                 cardManager.showAllCards(cardMap);
                 long endTime3 = System.nanoTime();
@@ -60,7 +62,7 @@ public class Main {
         }
 
         try {
-            cardManager.loadCards(cardMap, "cartas.txt");
+            cardManager.loadCards(cardMap, "src/main/resources/cartas.txt");
         } catch (IOException e) {
             System.out.println("Error al cargar las cartas: " + e.getMessage());
             System.exit(1);
